@@ -2,6 +2,7 @@
  **/output/
 /Clients_Prefix_Alpha.py
 /Clients_Prefix_Alpha2.py
+/Clients_Prefix_Beta.py
 /Create_allclients_txt_file.py
 # Игнорировать csv файлы
 *.csv
