@@ -19,9 +19,13 @@ def get_content():
 
 
 def create_new_clf(tdlist, parent_fpath):
+    # Без объявления следующих переменных глобальными, IDE пишет ошибку
     global new_clf
     global nf_index
-    global new_clf_name
+    global clf_subfolder_id
+    global clf_subfolder_kp
+
+    # Здесь задается начальный индекс
     nf_index = 101
     # Берем первые 2 или 3 символа от каждой папки и формируем из них список индексов
     for _, s in enumerate(tdlist[0]):
@@ -43,10 +47,16 @@ def create_new_clf(tdlist, parent_fpath):
     new_clf = mb.askyesno(title="Создание новой папки клиента",
                           message=f'Создать новую папку "{nf_index}_{s_i}" в папке 001_Перспектива?')
     if new_clf:
-        new_clf_name = os.path.join(parent_fpath[0], str(nf_index)+"_"+s_i)
-        os.makedirs(new_clf_name, exist_ok=True)
+        clf_subfolder_id = os.path.join(os.path.join(
+            parent_fpath[0], str(nf_index)+"_"+s_i), "00_ID")
+        clf_subfolder_kp = os.path.join(os.path.join(
+            parent_fpath[0], str(nf_index)+"_"+s_i), "01_КП")
+
+        os.makedirs(clf_subfolder_id, exist_ok=True)
+        os.makedirs(clf_subfolder_kp, exist_ok=True)
+
         mb.showinfo(title="Создание новой папки клента",
-                    message=f'В каталоге //dc/Bim/01_Клиенты/001_Перспектива создана новая папка "{nf_index}_{s_i}"')
+                    message=f'В каталоге //dc/Bim/01_Клиенты/001_Перспектива создана новая папка "{nf_index}_{s_i}", а также вложенные папки ID и КП')
 
 
 # Папка Перспектива = fold_persp
@@ -165,7 +175,7 @@ arch_i = source_folders.index('fold_archiv')
 dict_arch = {clients_purelist[arch_i][x]: r_list[arch_i][x]
              for x in range(len(clients_purelist[arch_i]))}
 
-# Фильтруем только значения с ratio > 46, и выводим на экран
+# Фильтруем только значения с ratio >= 46, и выводим на экран
 fdi_persp = {key: value for key, value in dict_persp.items() if value >= 46}
 fdi_compl = {key: value for key, value in dict_compl.items() if value >= 46}
 fdi_arch = {key: value for key, value in dict_arch.items() if value >= 46}
