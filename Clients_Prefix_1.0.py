@@ -26,7 +26,7 @@ def create_new_clf(tdlist, parent_fpath):
     global clf_subfolder_kp
 
     # Здесь задается начальный индекс
-    nf_index = 101
+    nf_index = 100
     # Берем первые 2 или 3 символа от каждой папки и формируем из них список индексов
     for _, s in enumerate(tdlist[0]):
         if s[2] == "_":
