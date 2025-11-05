@@ -55,7 +55,7 @@ def create_new_clf(tdlist, parent_fpath):
         os.makedirs(clf_subfolder_id, exist_ok=True)
         os.makedirs(clf_subfolder_kp, exist_ok=True)
 
-        # Открываем созданные папки, используем обработку исключений
+        # Открываем созданную папку клиента, используя обработку исключений. В влучае успеха выводим messagebox
         try:
             os.startfile(os.path.join(parent_fpath[0], str(nf_index)+"_"+s_i))
         except:
