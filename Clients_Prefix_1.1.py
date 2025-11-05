@@ -55,15 +55,15 @@ def create_new_clf(tdlist, parent_fpath):
         os.makedirs(clf_subfolder_id, exist_ok=True)
         os.makedirs(clf_subfolder_kp, exist_ok=True)
 
-        # Открываем созданную папку клиента, используя обработку исключений. В влучае успеха выводим messagebox
+        # Открываем созданную папку клиента, используя обработку исключений
         try:
             os.startfile(os.path.join(parent_fpath[0], str(nf_index)+"_"+s_i))
         except:
             print("Не удалось открыть созданную папку для нового клиента")
         else:
-            mb.showinfo(title="Создание новой папки клента",
-                        message=f'В каталоге //dc/Bim/01_Клиенты/001_Перспектива создана новая папка "{nf_index}_{s_i}", а также вложенные папки ID и КП')
+            pass
 
+# mb.showinfo(title="Создание новой папки клента", message=f'В каталоге //dc/Bim/01_Клиенты/001_Перспектива создана новая папка "{nf_index}_{s_i}", а также вложенные папки ID и КП')
 
 # Папка Перспектива = fold_persp
 # Папка Завершенные = fold_complete
